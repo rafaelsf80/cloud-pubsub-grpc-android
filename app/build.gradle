@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "es.rafaelsf80.apps.grpc.pubsub"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/services/io.grpc.ServerProvider'
+        exclude 'META-INF/services/io.grpc.ManagedChannelProvider'
+
+        exclude 'google/protobuf/field_mask.proto'
+        exclude 'google/protobuf/duration.proto'
+        exclude 'google/protobuf/type.proto'
+        exclude 'google/protobuf/api.proto'
+        exclude 'google/protobuf/any.proto'
+        exclude 'google/protobuf/source_context.proto'
+        exclude 'google/protobuf/empty.proto'
+        exclude 'google/protobuf/struct.proto'
+        exclude 'google/protobuf/wrappers.proto'
+        exclude 'google/protobuf/descriptor.proto'
+        exclude 'google/protobuf/timestamp.proto'
+        exclude 'META-INF/maven/com.google.protobuf/protobuf-java/pom.properties'
+        exclude 'META-INF/maven/com.google.protobuf/protobuf-java/pom.xml'
+        exclude 'META-INF/io.netty.versions.properties'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
+
+    compile 'com.google.api.grpc:grpc-pubsub-v1:0.0.2'
+
+    compile 'io.grpc:grpc-okhttp:0.13.2'
+    compile 'io.grpc:grpc-stub:0.13.2'
+    compile 'io.grpc:grpc-protobuf-nano:0.13.2'
+}
