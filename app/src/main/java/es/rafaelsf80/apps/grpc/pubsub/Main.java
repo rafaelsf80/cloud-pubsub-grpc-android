@@ -10,7 +10,10 @@ import android.widget.TextView;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.pubsub.v1.ListTopicsRequest;
 import com.google.pubsub.v1.ListTopicsResponse;
+import com.google.pubsub.v1.PublishRequest;
+import com.google.pubsub.v1.PublishResponse;
 import com.google.pubsub.v1.PublisherGrpc;
+import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.Topic;
 
 import java.io.IOException;
@@ -30,7 +33,7 @@ public class Main extends AppCompatActivity {
 
     private String TAG = getClass().getSimpleName();
 
-    private final String project = "REPLACE_WITH_YOUR_PROJECT";
+    private final String project = "decent-envoy-503";
     // assets directory, replace with the json file of your cloud project
     private final String CREDENTIALS_FILE = "doneval-cloud-d164a2981f94.json";
 
@@ -80,14 +83,30 @@ public class Main extends AppCompatActivity {
                             .build();
                     Log.d(TAG, "Request initialized ?: " + request.isInitialized());
 
-                    Log.d(TAG, "publisherStub: " + publisherStub.toString());
                     ListTopicsResponse resp = publisherStub.listTopics(request);
                     Log.d(TAG, "Found " + resp.getTopicsCount() + " topics.");
+                    String s = null;
                     for (Topic topic : resp.getTopicsList()) {
+                        s = topic.getName();
                         Log.d(TAG, topic.getName());
                         sbTopics.append( topic.getName() );
                         sbTopics.append( ", " );
+
                     }
+
+                    // You need to base64-encode your message
+                    String message = "Hello Cloud Pub/Sub!";
+                    PubsubMessage pubsubMessage = PubsubMessage.newBuilder().setMessageId(message).build();
+
+                    PublishRequest publishRequest = PublishRequest.newBuilder()
+                            .setTopic("projects/decent-envoy-503/topics/test1")
+                            .setMessages(1, pubsubMessage)
+                            .build();
+                    PublishResponse publishResponse = publisherStub.publish(publishRequest);
+                    Log.d(TAG, "Message: " + publishResponse.getMessageIds(0));
+                    Log.d(TAG, "Number of messages: " + String.valueOf(publishResponse.getMessageIdsCount()));
+
+
                 } catch (IOException e) {
                     Log.d(TAG, "Exception: " + e.toString());
                 }
@@ -96,7 +115,7 @@ public class Main extends AppCompatActivity {
 
             protected void onPostExecute(String msg) {
                 // Post Code
-                Log.d(TAG, msg);
+                //Log.d(TAG, msg);
                 tvTopics.setText("Topics" + msg);
             }
         }.execute();
