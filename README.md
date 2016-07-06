@@ -1,6 +1,9 @@
 # Cloud PubSub (gRPC) with Android #
 
-Following the [gRPC announcement for Cloud PubSub](https://cloud.google.com/blog/big-data/2016/03/announcing-grpc-alpha-for-google-cloud-pubsub), this sample project executes the [Java sample app](https://cloud.google.com/pubsub/grpc-java) on an Android Nexus 6 device
+Following the [gRPC announcement for Cloud PubSub](https://cloud.google.com/blog/big-data/2016/03/announcing-grpc-alpha-for-google-cloud-pubsub), 
+this Android sample publishes into a topic, and pulls messages fom a subscription.
+It takes some guidelines from [here](https://cloud.google.com/pubsub/grpc-java).
+The code can be executed on an Android device.
 
 
 ## Setup
@@ -28,9 +31,9 @@ compile 'com.google.api.grpc:grpc-pubsub-v1:0.0.2'
 ## Authentication
 
 I use a service account of my cloud project. Replace with yours by downloading the corresponding json file
-into assets/ file. You can use alternative authentication mechanisms if desired.
+into assets/ directory. You can use alternative authentication mechanisms if desired.
 
-Remember to set prereqs and [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project.
+You need to [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project, and also create a **Topic** and add a **Subscription**, following [this guideline](https://cloud.google.com/pubsub/quickstart-console).
 
 
 ## Java protobuf nano implementation with Pubsub
