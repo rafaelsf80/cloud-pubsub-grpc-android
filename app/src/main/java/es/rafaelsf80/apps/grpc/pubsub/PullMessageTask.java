@@ -94,8 +94,8 @@ public class PullMessageTask extends AsyncTask<String, Integer, Integer> {
 
              // Code to create new subscription, if required
 //            Subscription subscription = Subscription.newBuilder()
-//                    .setTopic("projects/decent-envoy-503/topics/test1")
-//                    .setName("projects/decent-envoy-503/subscriptions/test2")
+//                    .setTopic("projects/YOUR_PROJECT_ID/topics/test1")
+//                    .setName("projects/YOUR_PROJECT_ID/subscriptions/test2")
 //                    .setAckDeadlineSeconds(10) // 10-100 seconds
 //                    .build();
 //            subscriberStub.createSubscription(subscription); // ignore Subscription result.
