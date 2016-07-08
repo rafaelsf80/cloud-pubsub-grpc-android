@@ -18,7 +18,7 @@ The code can be executed on an Android device.
 
 Important to have Gradle and the protobuf plugin exactly in the versions above (2.12 and 0.7.6 respectively).
 protoc must be in version 3.
-
+7
 ## PubSub gRPC dependencies
 
 The following dependency needs to be added to build.gradle:
@@ -44,4 +44,8 @@ on the javanano implementation. This is properly handled by the plugin, however,
 
 ## Screenshots
 
-Main activity: (pending)
+Main activity:
+
+<img src="https://raw.githubusercontent.com/rafaelsf80/cloud-pubsub-grpc-android/master/app/screenshots/main1.png" alt="alt text" width="200" height="300">
+<img src="https://raw.githubusercontent.com/rafaelsf80/cloud-pubsub-grpc-android/master/app/screenshots/main2.png" alt="alt text" width="200" height="300">
+
