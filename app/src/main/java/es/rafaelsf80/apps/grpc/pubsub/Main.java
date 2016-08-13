@@ -16,9 +16,9 @@ public class Main extends AppCompatActivity {
     private String TAG = getClass().getSimpleName();
 
     // Constants shared across classes
-    public static final String TOPIC ="projects/YOUR_PROJECT_ID/topics/test1";
-    public static final String SUBSCRIPTION ="projects/YOUR_PROJECT_ID/subscriptions/test1";
-    public static final String CLOUD_PROJECT = "YOUR_PROJECT_ID";
+    public static final String TOPIC ="projects/decent-envoy-503/topics/test1";
+    public static final String SUBSCRIPTION ="projects/decent-envoy-503/subscriptions/test1";
+    public static final String CLOUD_PROJECT = "decent-envoy-503";
     // assets directory, replace with the json file of your cloud project
     public static final String CREDENTIALS_FILE = "doneval-cloud-d164a2981f94.json";
 
