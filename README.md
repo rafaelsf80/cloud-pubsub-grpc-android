@@ -30,12 +30,12 @@ compile 'com.google.api.grpc:grpc-pubsub-v1:0.0.2'
 
 ## Authentication
 
-Authentications using gloud-java liraries are described [here](https://github.com/GoogleCloudPlatform/gcloud-java). Remember to set prereqs and [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project.
+Authentications using gloud-java libraries are described [here](https://github.com/GoogleCloudPlatform/gcloud-java). Remember to set prereqs and [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project.
 
 
-Basically you have two authentication options from Android:
+Basically you have **two authentication options** from Android:
 
-- Using credentials from a service account. This requires to generate a JSON file from the console and add it to your apk.
+- **Use credentials of a service account**: This requires to generate a JSON file from the console and add it to your apk.
 This has some security concerns, since anyone unpacking your apk would have access to the private key of your service account.
 If you still would like to proceed, you should place your the corresponding json file
 into assets/ directory and use the following code to get credentials.
@@ -51,7 +51,7 @@ into assets/ directory and use the following code to get credentials.
 ```
 
 
-- Using OAuth2, specifying the scopes as described [here](https://developers.google.com/android/guides/http-auth#specifying_scopes). You get a token without comprimising security by saving any key inside the apk. The token should be generated as follows:
+- **Use OAuth2**, specifying the scopes as described [here](https://developers.google.com/android/guides/http-auth#specifying_scopes). You get a token without comprimising security by saving any key inside the apk. The token should be generated as follows:
    
 ```    
 
