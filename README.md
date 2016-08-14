@@ -14,9 +14,9 @@ The code can be executed on an Android device.
 
 3) Android plugin for gradle
 
-4) [Protobuf plugin for gradle 0.7.6](https://github.com/google/protobuf-gradle-plugin/tree/v0.7.6)
+4) [Protobuf plugin for gradle 0.7.7](https://github.com/google/protobuf-gradle-plugin/tree/v0.7.7)
 
-Important to have Gradle and the protobuf plugin exactly in the versions above (2.12 and 0.7.6 respectively).
+Important to have Gradle and the protobuf plugin exactly in the versions above (2.12 and 0.7.7 respectively).
 protoc must be in version 3.
 7
 ## PubSub gRPC dependencies
@@ -30,11 +30,44 @@ compile 'com.google.api.grpc:grpc-pubsub-v1:0.0.2'
 
 ## Authentication
 
-I use a service account of my cloud project. Replace with yours by downloading the corresponding json file
-into assets/ directory. You can use alternative authentication mechanisms if desired.
+Authentications using gloud-java liraries are described [here](https://github.com/GoogleCloudPlatform/gcloud-java). Remember to set prereqs and [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project.
 
-You need to [enable PubSub API](https://cloud.google.com/pubsub/prereqs) on your Google Cloud project, and also create a **Topic** and add a **Subscription**, following [this guideline](https://cloud.google.com/pubsub/quickstart-console).
 
+Basically you have two authentication options from Android:
+
+- Using credentials from a service account. This requires to generate a JSON file from the console and add it to your apk.
+This has some security concerns, since anyone unpacking your apk would have access to the private key of your service account.
+If you still would like to proceed, you should place your the corresponding json file
+into assets/ directory and use the following code to get credentials.
+
+   
+```    
+
+    AssetManager am = mContext.getAssets();
+    InputStream isCredentialsFile = am.open( YOUR_JSON_FILE_INSIDE_ASSETS_DIRECTORY );
+    
+    GoogleCredentials credential = GoogleCredentials.fromStream(isCredentialsFile);
+    credential = credential.createScoped(Arrays.asList("https://www.googleapis.com/auth/pubsub"));
+```
+
+
+- Using OAuth2, specifying the scopes as described [here](https://developers.google.com/android/guides/http-auth#specifying_scopes). You get a token without comprimising security by saving any key inside the apk. The token should be generated as follows:
+   
+```    
+
+    String scopesString = "https://www.googleapis.com/auth/pubsub";
+    String SCOPE = "oauth2:" + scopesString;
+    
+    token = GoogleAuthUtil.getToken(
+            mContext,     // Context of your Main activity
+            mAccount,     // Account name with permissions to PubSub and your cloud proyect
+            SCOPE         // String scope
+    );
+    
+    GoogleCredentials credential =  new GoogleCredentials( new AccessToken( token, null) );
+    credential = credential.createScoped(Arrays.asList("https://www.googleapis.com/auth/pubsub"));
+```
+   
 
 ## Java protobuf nano implementation with Pubsub
 

@@ -48,6 +48,8 @@ import io.grpc.okhttp.OkHttpChannelBuilder;
  * <p>
  * Author: Rafael Sanchez Fuentes rafaelsf80 at gmail dot com
  */
+
+
 public class PublishMessageTask extends AsyncTask<String, Integer, String> {
 
     ProgressBar pb = null;
