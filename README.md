@@ -37,8 +37,8 @@ Basically you have **two authentication options** from Android:
 
 - **Use credentials of a service account**: This requires to generate a JSON file from the console and add it to your apk.
 This has some security concerns, since anyone unpacking your apk would have access to the private key of your service account.
-If you still would like to proceed, you should place your the corresponding json file
-into assets/ directory and use the following code to get credentials.
+If you still would like to proceed, you should place your the corresponding JSON file
+into **assets/** directory and use the following code to get credentials.
 
    
 ```    
@@ -51,7 +51,7 @@ into assets/ directory and use the following code to get credentials.
 ```
 
 
-- **Use OAuth2**, specifying the scopes as described [here](https://developers.google.com/android/guides/http-auth#specifying_scopes). You get a token without comprimising security by saving any key inside the apk. The token should be generated as follows:
+- **Use OAuth2**, specifying the scopes as described [here](https://developers.google.com/android/guides/http-auth#specifying_scopes). You get a token without compromising security by saving any key inside the apk. The token should be generated as follows:
    
 ```    
 

@@ -116,7 +116,6 @@ public class PublishMessageTask extends AsyncTask<String, Integer, String> {
 
             }
 
-            // You need to base64-encode your message
             message = params[0];
 
             // You need to base64-encode your message
